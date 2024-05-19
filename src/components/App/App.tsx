@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import React from 'react';
 
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
@@ -18,12 +17,13 @@ import ImageModal from '../ImageModal/ImageModal';
 import ErrorSearch from '../ErrorSearch/ErrorSearch';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-import fetchGalleryPhoto from '/src/API/FetchPhoto.ts';
+import fetchGalleryPhoto from '../../../src/API/FetchPhoto';
+import { ArrayItem } from './AppProps';
 
 import './App.scss';
 
 function App() {
-  const [gallery, setGallery] = useState([]);
+  const [gallery, setGallery] = useState<ArrayItem[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -33,9 +33,10 @@ function App() {
 
   const galleryRef = useRef<HTMLUListElement>(null);
 
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  function openModal(images) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal(images: string) {
     setIsOpen(true);
     setSelectedImage(images);
   }
@@ -65,8 +66,8 @@ function App() {
         if (page !== 1) {
           setTimeout(() => {
             const height =
-              galleryRef.current.firstElementChild.getBoundingClientRect()
-                .height;
+              galleryRef.current?.firstElementChild?.getBoundingClientRect()
+                .height ?? 0;
             window.scrollBy({ top: height * 2, behavior: 'smooth' });
           }, 100);
         }
@@ -80,7 +81,7 @@ function App() {
     fetchImage();
   }, [page, searchTerm]);
 
-  const handleSearch = async query => {
+  const handleSearch = async (query: string) => {
     setNotFound(false);
     setError(false);
     setGallery([]);

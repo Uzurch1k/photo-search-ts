@@ -1,6 +1,6 @@
 import { RefObject } from 'react';
 
-import { ArrayItem } from './ImageProps';
+import { ArrayItem } from '../App/AppProps';
 import ImageCard from './ImageCard/ImageCard';
 
 import css from './ImageGallery.module.scss';

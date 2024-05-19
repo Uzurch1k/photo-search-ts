@@ -6,13 +6,19 @@ import { GoSearch } from 'react-icons/go';
 import github from '/src/img/git-hub.jpg';
 import css from './SearchBar.module.scss';
 
-const SearchBar = ({ onSearch }) => {
+type SearchBarProps = {
+  onSearch: (search: string) => void;
+};
+
+const SearchBar = ({ onSearch }: SearchBarProps) => {
   const notify = () => toast.error('Enter text to search!');
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
-    const form = evt.target;
-    const search = form.elements.search.value;
+    const form = evt.target as HTMLFormElement;
+    const search = (
+      form.elements as HTMLFormControlsCollection & { search: HTMLInputElement }
+    ).search.value;
 
     if (search.trim() === '') {
       notify();

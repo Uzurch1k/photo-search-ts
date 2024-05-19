@@ -1,4 +1,4 @@
-import { ArrayItem } from '../ImageProps';
+import { ArrayItem } from '../../App/AppProps';
 
 import { FaUser } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';

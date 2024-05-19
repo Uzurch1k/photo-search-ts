@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 
 import css from './ImageModal.module.scss';
 
-const customStyles = {
+const customStyles: Modal.Styles = {
   overlay: {
     zIndex: 100,
     position: 'fixed',
@@ -28,16 +28,26 @@ const customStyles = {
   },
 };
 
-function ImageModal({ selectedImage, modalIsOpen, closeModal }) {
+interface ImageModalProps {
+  selectedImage: string | null;
+  modalIsOpen: boolean;
+  closeModal: () => void;
+}
+
+function ImageModal({
+  selectedImage,
+  modalIsOpen,
+  closeModal,
+}: ImageModalProps) {
   useEffect(() => {
-    const body = document.querySelector('body');
+    const body = document.querySelector('body') as HTMLBodyElement;
     if (modalIsOpen) {
       body.style.overflow = 'hidden';
     } else {
       body.style.overflow = 'visible';
     }
-	}, [modalIsOpen, closeModal]);
-	
+  }, [modalIsOpen, closeModal]);
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -45,7 +55,7 @@ function ImageModal({ selectedImage, modalIsOpen, closeModal }) {
       style={customStyles}
     >
       <div onClick={closeModal} className={css.content}>
-        <img src={selectedImage} alt="" />
+        {selectedImage && <img src={selectedImage} alt="" />}
       </div>
     </Modal>
   );
