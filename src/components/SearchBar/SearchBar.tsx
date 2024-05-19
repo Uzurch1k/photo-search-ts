@@ -1,3 +1,5 @@
+import { FormEvent } from 'react';
+
 import toast, { Toaster } from 'react-hot-toast';
 import { GoSearch } from 'react-icons/go';
 
@@ -7,7 +9,7 @@ import css from './SearchBar.module.scss';
 const SearchBar = ({ onSearch }) => {
   const notify = () => toast.error('Enter text to search!');
 
-  const handleSubmit = evt => {
+  const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
     const form = evt.target;
     const search = form.elements.search.value;

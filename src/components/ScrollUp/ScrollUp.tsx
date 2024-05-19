@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { IoIosArrowUp } from 'react-icons/io';
 import css from './ScrollUp.module.scss';
 
@@ -6,7 +7,7 @@ const ScrollUp = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       if (window.scrollY > 100) {
         setShowButton(true);
       } else {
@@ -21,7 +22,7 @@ const ScrollUp = () => {
     };
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = (): void => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',

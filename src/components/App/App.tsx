@@ -31,7 +31,7 @@ function App() {
   const [error, setError] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
 
-  const galleryRef = useRef(null);
+  const galleryRef = useRef<HTMLUListElement>(null);
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [modalIsOpen, setIsOpen] = React.useState(false);

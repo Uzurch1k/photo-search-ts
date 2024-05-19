@@ -1,3 +1,5 @@
+import { ArrayItem } from '../ImageProps';
+
 import { FaUser } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
@@ -5,7 +7,12 @@ import { AiFillLike } from 'react-icons/ai';
 
 import css from './ImageCard.module.scss';
 
-const ImageCard = ({ arrayItem, openModal }) => {
+type ImageCardProps = {
+  arrayItem: Omit<ArrayItem, 'id'>;
+  openModal: (regular: string) => void;
+};
+
+const ImageCard = ({ arrayItem, openModal }: ImageCardProps) => {
   const { urls, user, likes, description } = arrayItem;
   const { name, instagram_username, twitter_username } = user;
   const { small, regular } = urls;
@@ -33,9 +40,11 @@ const ImageCard = ({ arrayItem, openModal }) => {
               <p>{twitter_username}</p>
             </li>
           )}
-          <li className={css.item}>
-            <AiFillLike /> <p>{likes}</p>
-          </li>
+          {likes && (
+            <li className={css.item}>
+              <AiFillLike /> <p>{likes}</p>
+            </li>
+          )}
         </ul>
       </div>
     </div>

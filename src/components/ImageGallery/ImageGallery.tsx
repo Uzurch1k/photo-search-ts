@@ -1,7 +1,23 @@
+import { RefObject } from 'react';
+
+import { ArrayItem } from './ImageProps';
 import ImageCard from './ImageCard/ImageCard';
+
 import css from './ImageGallery.module.scss';
 
-const ImageGallery = ({ arrayGallery, searchTerm, openModal, galleryRef }) => {
+type ImageGalleryProps = {
+  arrayGallery: ArrayItem[];
+  searchTerm: string;
+  openModal: (url: string) => void;
+  galleryRef: RefObject<HTMLUListElement>;
+};
+
+const ImageGallery = ({
+  arrayGallery,
+  searchTerm,
+  openModal,
+  galleryRef,
+}: ImageGalleryProps) => {
   return (
     <section className={css.gallery}>
       {arrayGallery.length !== 0 ? (
