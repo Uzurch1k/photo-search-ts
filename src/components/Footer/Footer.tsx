@@ -8,7 +8,7 @@ const Footer = () => {
           <img src="/react.svg" alt="react" />
           <a
             className={css.link}
-            href="https://github.com/Uzurch1k/goit-react-hw-04"
+            href="https://github.com/Uzurch1k/photo-search-ts"
             target="_blank"
             rel="noopener noreferrer"
           >

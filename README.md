@@ -1,1 +1,1 @@
-# goit-typescript-hw-02
+# photo-search-ts
